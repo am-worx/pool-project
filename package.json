@@ -1,0 +1,26 @@
+{
+  "name": "pool-project",
+  "version": "0.0.1",
+  "description": "Visitors activity registration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andrii Motsyk",
+  "license": "ISC",
+  "dependencies": {
+    "angular2": "^2.0.0-alpha.36",
+    "bootstrap": "^3.3.5"
+  },
+  "devDependencies": {
+    "babel-core": "^5.8.23"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/am-worx/pool-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/am-worx/pool-project/issues"
+  },
+  "homepage": "https://github.com/am-worx/pool-project#readme"
+}
