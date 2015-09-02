@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "angular2": "^2.0.0-alpha.36",
-    "bootstrap": "^3.3.5"
+    "bootstrap": "^3.3.5",
+    "gulp": "^3.9.0"
   },
   "devDependencies": {
-    "babel-core": "^5.8.23"
+    "babel-core": "^5.8.23",
+    "gulp-babel": "^5.2.1",
+    "gulp-watch": "^4.3.5"
   },
   "repository": {
     "type": "git",
