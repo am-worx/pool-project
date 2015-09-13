@@ -2,42 +2,43 @@ var gulp = require("gulp"),
 		babel = require("gulp-babel"),
 		watch = require("gulp-watch");
 
-
 var routes = {
-	src: { //Пути откуда брать исходники
-        html: 'src/*.html', //Синтаксис src/*.html говорит gulp что мы хотим взять все файлы с расширением .html
-        js: 'src/js/main.js',//В стилях и скриптах нам понадобятся только main файлы
-        style: 'src/style/main.scss',
-        img: 'src/img/**/*.*', //Синтаксис img/**/*.* означает - взять все файлы всех расширений из папки и из вложенных каталогов
-        fonts: 'src/fonts/**/*.*'
-    },
-    build: { //Тут мы укажем куда складывать готовые после сборки файлы
-        html: 'build/',
-        js: 'build/js/',
-        css: 'build/css/',
-        img: 'build/img/',
-        fonts: 'build/fonts/'
-    },
-    watch: { //Тут мы укажем, за изменением каких файлов мы хотим наблюдать
-        html: 'src/**/*.html',
-        js: 'src/js/**/*.js',
-        style: 'src/style/**/*.scss',
-        img: 'src/img/**/*.*',
-        fonts: 'src/fonts/**/*.*'
-    },
-    clean: './build'
+	src: {
+    root: 'src/*.html',
+    js: 'src/js/main.js',
+    style: 'src/style/main.scss',
+    img: 'src/img/**/*.*',
+    fonts: 'src/fonts/**/*.*'
+  },
+  build: {
+    root: 'build/',
+    js: 'build/js/',
+    css: 'build/css/',
+    img: 'build/img/',
+    fonts: 'build/fonts/'
+  },
+  watch: {
+    all: 'src/**/*.*',
+    html: 'src/**/*.html',
+    js: 'src/js/**/*.js',
+    style: 'src/style/**/*.scss',
+    img: 'src/img/**/*.*',
+    fonts: 'src/fonts/**/*.*'
+  },
+  clean: './build'
 };
 
 gulp.task("watch", function() {
-  watch([routes.watch.js], function(event, callback) {
+  watch([routes.watch.all], function(event, callback) {
         gulp.start('default');
     });
 });
 
-
-
 gulp.task("default", function () {
-  return gulp.src("src/js/my-ng2-controller.js")
+  gulp.src('src/*.*')
+    .pipe(gulp.dest(routes.build.root));
+
+  gulp.src("src/js/*.js")
     .pipe(babel())
     .pipe(gulp.dest("build/js"));
 });
