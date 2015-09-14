@@ -10,10 +10,15 @@ var server = http.createServer(function (req, res) {
   var reqDate = new Date(/*parsedReq.query.iso*/);
   var result = 0;
 
-  console.log(parsedReq.pathname);
-
   if (parsedReq.pathname === '/') {
-    result = 'Load Angular 2 app';
+    fs.readFile('index.html', 'utf8', function (err, data) {
+		  if (err) {throw err; console.log('read error');}
+		  result = data;
+
+		  res.writeHead(200);
+      res.write(data + '123', "utf8");
+      res.end();
+		});
   }
   else if (parsedReq.pathname === '/api/parsetime') {
     result = {
@@ -33,7 +38,8 @@ var server = http.createServer(function (req, res) {
   // res.write(JSON.stringify(result), 'utf-8');
   // res.end();
 
-  res.end(JSON.stringify(result));
+  //res.end(JSON.stringify(result));
+  //res.end(result);
 });
 
-server.listen(8080);
+server.listen(8081);
