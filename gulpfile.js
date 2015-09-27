@@ -1,6 +1,8 @@
-var gulp = require("gulp"),
+var gulp = require('gulp'),
+		watch = require('gulp-watch'),
 		babel = require("gulp-babel"),
-		watch = require("gulp-watch");
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify');
 
 var routes = {
 	src: {
@@ -28,17 +30,19 @@ var routes = {
   clean: './build'
 };
 
-gulp.task("watch", function() {
-  watch([routes.watch.all], function(event, callback) {
-        gulp.start('default');
-    });
-});
-
 gulp.task("default", function () {
   gulp.src('src/*.*')
     .pipe(gulp.dest(routes.build.root));
 
   gulp.src("src/js/*.js")
     .pipe(babel())
-    .pipe(gulp.dest("build/js"));
+    .pipe(concat('all.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest(routes.build.js));
+});
+
+gulp.task("watch", function() {
+  watch([routes.watch.all], function(event, callback) {
+    gulp.start('default');
+  });
 });
