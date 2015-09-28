@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
-		watch = require('gulp-watch'),
-		babel = require("gulp-babel"),
+    watch = require('gulp-watch'),
+    babel = require("gulp-babel"),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify');
 
