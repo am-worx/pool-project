@@ -15,6 +15,6 @@ app.get('/', function (req, res) {
       res.end();
     }
   });
-}) 
+});
 app.use(express.static('.'));
-app.listen(8080)
+app.listen(8080);

@@ -13,6 +13,7 @@
 
 // ES5
 
+
 function DisplayComponent() {
   this.myName = "Alice";
 }
