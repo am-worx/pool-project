@@ -11,8 +11,6 @@
 
 // console.log('normal');
 
-// ES5
-
 
 function DisplayComponent() {
   this.myName = "Alice";

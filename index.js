@@ -5,7 +5,7 @@ var http = require('http'),
 
 var app = express();
 app.get('/', function (req, res) {
-  fs.readFile('index.html', 'utf8', function (err, data) {
+  fs.readFile('build/index.html', 'utf8', function (err, data) {
     if (err) {
       throw err; 
       console.log('read error');

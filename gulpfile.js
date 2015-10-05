@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     babel = require('gulp-babel'),
-    sass = require('gulp-sass'),
+    //sass = require('gulp-sass'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps');
@@ -39,9 +39,9 @@ gulp.task("default", function () {
   gulp.src("src/js/*.js")
     .pipe(babel())
     .pipe(concat('all.js'))
-    //.pipe(sourcemaps.init())
-    //.pipe(uglify())
-    //.pipe(sourcemaps.write())
+    .pipe(sourcemaps.init())
+    .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(routes.build.js));
 });
 

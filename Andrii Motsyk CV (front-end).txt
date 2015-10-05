@@ -1,0 +1,50 @@
+Andrii Motsyk (Front end developer)
+E-mail: motsyk.a@gmail.com
+Skype: motsik_a
+Tel: +38(097)99-44-028
+City: Kyiv
+
+Work experience:
+	July 2015 - present 
+		Working in ************* as front-end developer;
+	March 2014 – May 2015
+		Working in Smile Open Source Solutions Kyiv office as front-end developer with Magento and TYPO3; 
+	May 2013 –  March 2014 
+		Freelancing; 
+
+Academic qualification:
+	2007-2012, Master degree in Law,
+		National University “Law Academy of Ukraine named after Yaroslav the wise”, Kharkiv, Ukraine;
+	2003-2007, Junior specialist degree in Programming (Programming of computers and automated systems faculty),
+		Machine building college of Donbass State Machine building Academy, Kramators’k, Ukraine.
+
+Technical skills:
+
+Languages, frameworks:
+	HTML5, CSS3, Responsive design, Twitter Bootstrap 3.3.5, Less, Sass, XML,
+	JavaScript, NodeJS, AngularJS, Backbone.js, jQuery, jQueryUI, Gulp, Grunt,
+	Magento front end.
+
+Tools:
+	Web Storm, Sublime text, Adobe Photoshop, Git, JIRA, Redmine.
+ 
+Operating systems:
+	Ubuntu 12 – 14, Windows 95 – 7.
+
+Additional:
+	Basic skills of software testing (completed training); 
+
+Personal qualities:
+	Good in analyzing and solving problems;
+	Communicative team player;
+	Can work efficiently both individually and in team environment;
+	Highly organized, accurate person, willing to accept responsibility;
+	Ability to work under pressure;
+	Quick learner, enthusiastic, adaptable, self-motivated;
+	Ready for overtimes, on-call duties and duty journeys.
+
+Languages:
+	English – fluent,
+	Russian, Ukrainian – native.
+
+
