@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NG1 Pool</title>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <!--<script src="build/js/all.js"></script>-->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  </head>
+  <body>
+    <div class="" ng-app="myApp" ng-controller="myCtrl">
+      <ul>
+        <li ng-repeat="person in phonebook">
+          First name: {{person.firstName}}<br>
+          Last name: {{person.lastName}}
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+      $http.get("http://localhost:8080")
+        .success(function(response) {
+          $scope.res = response;
+          console.log('res', response);
+        });
+
+
+      $scope.firstName= "John";
+      $scope.lastName= "Doe";
+      $scope.phonebook = [
+        {
+          firstName: 'Andrii',
+          lastName: 'Motsyk',
+          age: 27
+        },
+        {
+          firstName: 'Marina',
+          lastName: 'Toptunenko',
+          age: 24
+        }
+      ]
+    });
+  </script>
+</html>

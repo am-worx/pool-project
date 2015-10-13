@@ -27,6 +27,9 @@ mongo.connect('mongodb://localhost:27017/poolDb' , function(err, db) {
   //});
 
   var userCollection = db.collection('users');
+  db.collection('users', function(err, data){
+    err ? console.log('\nCOLLECTION READING ERROR\n\n', err) : null;
+  });
 
   //var user1 = {
   //  name: 'Me',
@@ -40,15 +43,11 @@ mongo.connect('mongodb://localhost:27017/poolDb' , function(err, db) {
   //  db.close();
   //});
 
-  var result = userCollection.find({age: 27}, {}, function(err, data){
-    if (err) {
-      console.log('\nCOLLECTION READING ERROR:\n\n', err)
-    } else {
-      console.log('\nDATA READ:\n\n', data)
-    }
+  var result = userCollection.find({}).toArray(function(err, documents) {
+    if (err) console.log('\nCOLLECTION FIND ERROR:\n\n', err);
+    console.log('\nCOLLECTION DOCUMENTS:\n\n', documents);
+    db.close();
   });
-
-  console.log('\nLOOKS LIKE SHIT ::::::::::::\n\n', result);
 
   //console.log('\n\n\n\n\nHERE I AM', userCollection.listIndexes());
 
@@ -79,7 +78,3 @@ mongo.connect('mongodb://localhost:27017/poolDb' , function(err, db) {
   //  db.close();
   //})
 });
-
-/**
- * Created by am-worx on 10/12/15.
- */
