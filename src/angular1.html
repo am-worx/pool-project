@@ -22,15 +22,12 @@
   <script>
     var app = angular.module('myApp', []);
     app.controller('myCtrl', function($scope, $http) {
-      $http.get("http://localhost:8080")
+      $http.get("http://localhost:8080/api")
         .success(function(response) {
           $scope.res = response;
           console.log('res', response);
         });
 
-
-      $scope.firstName= "John";
-      $scope.lastName= "Doe";
       $scope.phonebook = [
         {
           firstName: 'Andrii',
