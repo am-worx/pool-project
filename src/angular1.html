@@ -8,19 +8,65 @@
     <!--<script src="build/js/all.js"></script>-->
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
   </head>
-  <body>
-    <div class="" ng-app="myApp" ng-controller="myCtrl">
-      <ul>
-        <li ng-repeat="person in phonebook">
-          First name: {{person.firstName}}<br>
-          Last name: {{person.lastName}}
-        </li>
-      </ul>
+  <body ng-app="myApp">
+    <div class="container">
+      <div class="" ng-controller="myCtrl">
+        <ul>
+          <li ng-repeat="person in phonebook">
+            First name: {{person.firstName}}<br>
+            Last name: {{person.lastName}}
+          </li>
+        </ul>
+      </div>
+
+      <div class="form row" ng-controller="formController">
+        <form action="">
+          <div class="form-group">
+            <label for="userName">Name</label>
+            <input ng-model="user.name" required type="text" class="form-control" id="userName" placeholder="Name">
+          </div>
+          <div class="form-group">
+            <label for="userTel">Telephone</label>
+            <input ng-model="user.tel" required type="tel" class="form-control" id="userTel" placeholder="Telephone">
+          </div>
+          <div class="form-group">
+            <label for="userEmail">Email</label>
+            <input ng-model="user.email" required type="email" class="form-control" id="userEmail" placeholder="Email">
+          </div>
+        </form>
+        <pre>user = {{user | json}}</pre>
+      </div>
+
     </div>
   </body>
 
+  <style type="text/css">
+    /*input.ng-invalid.ng-touched {*/
+      /*background-color: #FA787E;*/
+    /*}*/
+
+    input.ng-valid.ng-touched {
+      background-color: #78FA89;
+    }
+  </style>
+
   <script>
     var app = angular.module('myApp', []);
+
+    app.controller('formController', ['$scope', function($scope) {
+      $scope.master = {};
+
+      $scope.update = function (user) {
+        $scope.master = angular.copy(user);
+      };
+
+      $scope.reset = function () {
+        $scope.user = angular.copy($scope.master);
+      };
+
+      $scope.reset();
+    }]);
+
     app.controller('myCtrl', function($scope, $http) {
       $http.get("http://localhost:8080/api")
         .success(function(response) {
