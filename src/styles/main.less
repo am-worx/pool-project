@@ -1,0 +1,14 @@
+@invalid: #f00;
+@valid: #0f0;
+
+.help-block {color: @invalid;}
+
+form.ng-submitted {
+  .ng-invalid {border-color: @invalid;}
+  .ng-valid {border-color: @valid;}
+}
+
+.ng-touched {
+  &.ng-invalid {border-color: @invalid;}
+  &.ng-valid {border-color: @valid;}
+}

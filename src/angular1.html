@@ -5,9 +5,11 @@
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <!--<script src="build/js/all.js"></script>-->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js"></script>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
   </head>
+
   <body ng-app="myApp">
     <div class="container">
       <div class="" ng-controller="myCtrl">
@@ -20,40 +22,63 @@
       </div>
 
       <div class="form row" ng-controller="formController">
-        <form action="">
+
+        <form name="userForm" ng-submit="submit()" novalidate>
           <div class="form-group">
-            <label for="userName">Name</label>
-            <input ng-model="user.name" required type="text" class="form-control" id="userName" placeholder="Name">
+            <label for="userName"><span class="required">* </span>Name</label>
+            <input name="name" ng-model="name" ng-model-options="inputsOptions" required type="text"
+                   class="form-control" id="userName" placeholder="Name">
+            <span class="error-message"></span>
+            <p class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched || submitAttempt">
+              <span ng-messages-include="ngMessages.html"></span>
+            </p>
           </div>
           <div class="form-group">
-            <label for="userTel">Telephone</label>
-            <input ng-model="user.tel" required type="tel" class="form-control" id="userTel" placeholder="Telephone">
+            <label for="userTel"><span class="required">* </span>Telephone</label>
+            <input name="tel" ng-model="tel" ng-model-options="inputsOptions" required type="tel"
+                   class="form-control" id="userTel" placeholder="Telephone">
+            <span class="error-message"></span>
+            <p class="help-block" ng-messages="userForm.tel.$error" ng-if="userForm.tel.$touched || submitAttempt">
+              <span ng-messages-include="ngMessages.html"></span>
+            </p>
           </div>
           <div class="form-group">
-            <label for="userEmail">Email</label>
-            <input ng-model="user.email" required type="email" class="form-control" id="userEmail" placeholder="Email">
+            <label for="userEmail"><span class="required">* </span>Email</label>
+            <input name="email" ng-model="email" ng-model-options="inputsOptions" required type="email"
+                   class="form-control" id="userEmail" placeholder="Email">
+            <p class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$touched || submitAttempt">
+              <span ng-messages-include="ngMessages.html"></span>
+            </p>
+
           </div>
+          <input type="submit" value="Add user"/>
         </form>
-        <pre>user = {{user | json}}</pre>
+
+        <pre>name = {{ name | json}}</pre>
+        <pre>tel = {{ tel | json}}</pre>
+        <pre>email = {{ email | json}}</pre>
+        <pre>{{userForm | json}}</pre>
       </div>
 
     </div>
   </body>
 
-  <style type="text/css">
-    /*input.ng-invalid.ng-touched {*/
-      /*background-color: #FA787E;*/
-    /*}*/
-
-    input.ng-valid.ng-touched {
-      background-color: #78FA89;
-    }
-  </style>
-
   <script>
-    var app = angular.module('myApp', []);
-
+    var app = angular.module('myApp', ['ngMessages']);
     app.controller('formController', ['$scope', function($scope) {
+
+      $scope.submit = function() {
+        $scope.submitAttempt = true;
+        if ($scope.userForm.$valid) {
+          alert('Submitted');
+        }
+      };
+
+      $scope.inputsOptions = {
+        updateOn: 'default blur',
+        debounce: { 'default': 100, 'blur': 0 }
+      };
+
       $scope.master = {};
 
       $scope.update = function (user) {
@@ -87,5 +112,6 @@
         }
       ]
     });
+
   </script>
 </html>

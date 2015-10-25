@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     babel = require('gulp-babel'),
     //sass = require('gulp-sass'),
+    less = require('gulp-less'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     sourcemaps = require('gulp-sourcemaps');
@@ -17,7 +18,7 @@ var routes = {
   build: {
     root: 'build/',
     js: 'build/js/',
-    css: 'build/css/',
+    styles: 'build/styles/',
     img: 'build/img/',
     fonts: 'build/fonts/'
   },
@@ -25,7 +26,8 @@ var routes = {
     all: 'src/**/*.*',
     html: 'src/**/*.html',
     js: 'src/js/**/*.js',
-    style: 'src/style/**/*.scss',
+    scss: 'src/styles/**/*.scss',
+    less: 'src/styles/**/*.less',
     img: 'src/img/**/*.*',
     fonts: 'src/fonts/**/*.*'
   },
@@ -45,8 +47,22 @@ gulp.task("default", function () {
     .pipe(gulp.dest(routes.build.js));
 });
 
+gulp.task("less", function() {
+  gulp.src("src/styles/*.less")
+    .pipe(less())
+    //pipe(concat('styles.js'))
+    //.pipe(sourcemaps.init())
+    //.pipe(uglify())
+    //.pipe(sourcemaps.write())
+    .pipe(gulp.dest(routes.build.styles));
+});
+
 gulp.task("watch", function() {
   watch([routes.watch.all], function(event, callback) {
     gulp.start('default');
+  });
+
+  watch([routes.watch.less], function(event, callback) {
+    gulp.start('less');
   });
 });
