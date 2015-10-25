@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     babel = require('gulp-babel'),
-    //sass = require('gulp-sass'),
+    sass = require('gulp-sass'),
     less = require('gulp-less'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -47,14 +47,18 @@ gulp.task("default", function () {
     .pipe(gulp.dest(routes.build.js));
 });
 
+function jumpOverError (error) {
+  console.log('this is me: ', error.toString());
+  this.emit('end');
+}
+
 gulp.task("less", function() {
-  gulp.src("src/styles/*.less")
-    .pipe(less())
-    //pipe(concat('styles.js'))
-    //.pipe(sourcemaps.init())
-    //.pipe(uglify())
-    //.pipe(sourcemaps.write())
-    .pipe(gulp.dest(routes.build.styles));
+    gulp.src("src/styles/*.less")
+//      .pipe(sourcemaps.init())
+      .pipe(less())
+      .on('error', jumpOverError)
+//      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(routes.build.styles))
 });
 
 gulp.task("watch", function() {

@@ -1,117 +1,100 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>NG1 Pool</title>
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js"></script>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="styles/main.css"/>
-  </head>
-
-  <body ng-app="myApp">
-    <div class="container">
-      <div class="" ng-controller="myCtrl">
-        <ul>
-          <li ng-repeat="person in phonebook">
-            First name: {{person.firstName}}<br>
-            Last name: {{person.lastName}}
-          </li>
-        </ul>
-      </div>
-
-      <div class="form row" ng-controller="formController">
-
-        <form name="userForm" ng-submit="submit()" novalidate>
-          <div class="form-group">
-            <label for="userName"><span class="required">* </span>Name</label>
-            <input name="name" ng-model="name" ng-model-options="inputsOptions" required type="text"
-                   class="form-control" id="userName" placeholder="Name">
-            <span class="error-message"></span>
-            <p class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched || submitAttempt">
-              <span ng-messages-include="ngMessages.html"></span>
-            </p>
-          </div>
-          <div class="form-group">
-            <label for="userTel"><span class="required">* </span>Telephone</label>
-            <input name="tel" ng-model="tel" ng-model-options="inputsOptions" required type="tel"
-                   class="form-control" id="userTel" placeholder="Telephone">
-            <span class="error-message"></span>
-            <p class="help-block" ng-messages="userForm.tel.$error" ng-if="userForm.tel.$touched || submitAttempt">
-              <span ng-messages-include="ngMessages.html"></span>
-            </p>
-          </div>
-          <div class="form-group">
-            <label for="userEmail"><span class="required">* </span>Email</label>
-            <input name="email" ng-model="email" ng-model-options="inputsOptions" required type="email"
-                   class="form-control" id="userEmail" placeholder="Email">
-            <p class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$touched || submitAttempt">
-              <span ng-messages-include="ngMessages.html"></span>
-            </p>
-
-          </div>
-          <input type="submit" value="Add user"/>
-        </form>
-
-        <pre>name = {{ name | json}}</pre>
-        <pre>tel = {{ tel | json}}</pre>
-        <pre>email = {{ email | json}}</pre>
-        <pre>{{userForm | json}}</pre>
-      </div>
-
+<head>
+  <title>NG1 Pool</title>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js"></script>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="styles/main.css"/>
+</head>
+<body ng-app="myApp">
+  <div class="container">
+    <div class="" ng-controller="myCtrl">
+      <ul>
+        <li ng-repeat="person in phonebook">
+          First name: {{person.firstName}}<br>
+          Last name: {{person.lastName}}
+        </li>
+      </ul>
     </div>
-  </body>
 
-  <script>
-    var app = angular.module('myApp', ['ngMessages']);
-    app.controller('formController', ['$scope', function($scope) {
+    <div class="form row" ng-controller="formController">
+      <form name="userForm" ng-submit="submit()" novalidate>
+        <div class="form-group">
+          <label for="userName"><span class="required">* </span>Name</label>
+          <input name="name" ng-model="user.name" required type="text"
+                 class="form-control" id="userName" placeholder="Name">
+          <span class="error-message"></span>
+          <p class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched || submitAttempt">
+            <span ng-messages-include="ngMessages.html"></span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="userTel"><span class="required">* </span>Telephone</label>
+          <input name="tel" ng-model="user.tel" required type="tel"
+                 class="form-control" id="userTel" placeholder="Telephone">
+          <span class="error-message"></span>
+          <p class="help-block" ng-messages="userForm.tel.$error" ng-if="userForm.tel.$touched || submitAttempt">
+            <span ng-messages-include="ngMessages.html"></span>
+          </p>
+        </div>
+        <div class="form-group">
+          <label for="userEmail"><span class="required">* </span>Email</label>
+          <input name="email" ng-model="user.email" required type="email"
+                 class="form-control" id="userEmail" placeholder="Email">
+          <p class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$touched || submitAttempt">
+            <span ng-messages-include="ngMessages.html"></span>
+          </p>
+        </div>
+        <input type="submit" value="Add user"/>
+      </form>
 
-      $scope.submit = function() {
-        $scope.submitAttempt = true;
-        if ($scope.userForm.$valid) {
-          alert('Submitted');
-        }
-      };
+      <hr/>
+      <pre>name = {{ user.name | json}}</pre>
+      <pre>tel = {{ user.tel | json}}</pre>
+      <pre>email = {{ user.email | json}}</pre>
+      <pre>{{userForm | json}}</pre>
+    </div>
 
-      $scope.inputsOptions = {
-        updateOn: 'default blur',
-        debounce: { 'default': 100, 'blur': 0 }
-      };
+  </div>
+</body>
 
-      $scope.master = {};
+<script>
 
-      $scope.update = function (user) {
-        $scope.master = angular.copy(user);
-      };
+  var app = angular.module('myApp', ['ngMessages']);
+  app.controller('formController', ['$scope', function($scope) {
 
-      $scope.reset = function () {
-        $scope.user = angular.copy($scope.master);
-      };
+    $scope.submit = function() {
+      $scope.submitAttempt = true;
+      if ($scope.userForm.$valid) {
+        alert('Submitted');
+      }
+    };
 
-      $scope.reset();
-    }]);
+  }]);
 
-    app.controller('myCtrl', function($scope, $http) {
-      $http.get("http://localhost:8080/api")
-        .success(function(response) {
-          $scope.res = response;
-          console.log('res', response);
-        });
+  app.controller('myCtrl', function($scope, $http) {
+    $http.get("http://localhost:8080/api")
+      .success(function(response) {
+        $scope.res = response;
+        console.log('res', response);
+      });
 
-      $scope.phonebook = [
-        {
-          firstName: 'Andrii',
-          lastName: 'Motsyk',
-          age: 27
-        },
-        {
-          firstName: 'Marina',
-          lastName: 'Toptunenko',
-          age: 24
-        }
-      ]
-    });
+    $scope.phonebook = [
+      {
+        firstName: 'Andrii',
+        lastName: 'Motsyk',
+        age: 27
+      },
+      {
+        firstName: 'Marina',
+        lastName: 'Toptunenko',
+        age: 24
+      }
+    ]
+  });
 
-  </script>
+</script>
 </html>
