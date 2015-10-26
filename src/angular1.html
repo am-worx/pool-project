@@ -6,6 +6,7 @@
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-messages.js"></script>
+  <script src="js/ngMask.min.js"></script>
   <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="styles/main.css"/>
 </head>
@@ -24,8 +25,8 @@
       <form name="userForm" ng-submit="submit()" novalidate>
         <div class="form-group">
           <label for="userName"><span class="required">* </span>Name</label>
-          <input name="name" ng-model="user.name" ng-model-options="debounceOption" type="text"
-                 class="form-control" id="userName" placeholder="Name" required>
+          <input type="text" name="name" ng-model="user.name" ng-model-options="debounceOption"
+                 class="form-control" id="userName" placeholder="User Name" required>
           <span class="error-message"></span>
           <p class="help-block" ng-messages="userForm.name.$error" ng-if="userForm.name.$touched || submitAttempt">
             <span ng-messages-include="ngMessages.html"></span>
@@ -33,8 +34,9 @@
         </div>
         <div class="form-group">
           <label for="userTel"><span class="required">* </span>Telephone</label>
-          <input name="tel" ng-model="user.tel" ng-model-options="debounceOption" type="tel"
-                 class="form-control" id="userTel" placeholder="Telephone" required>
+          <input type="tel" mask="(999)999-9999" placeholder="(000)111-1111"
+              name="tel" ng-model="user.tel" ng-model-options="debounceOption"
+                 class="form-control" id="userTel" required>
           <span class="error-message"></span>
           <p class="help-block" ng-messages="userForm.tel.$error" ng-if="userForm.tel.$touched || submitAttempt">
             <span ng-messages-include="ngMessages.html"></span>
@@ -42,7 +44,7 @@
         </div>
         <div class="form-group">
           <label for="userEmail"><span class="required">* </span>Email</label>
-          <input name="email" ng-model="user.email" type="email"
+          <input type="email" name="email" ng-model="user.email"
                  class="form-control" id="userEmail" placeholder="Email" required>
           <p class="help-block" ng-messages="userForm.email.$error" ng-if="userForm.email.$touched || submitAttempt">
             <span ng-messages-include="ngMessages.html"></span>
@@ -63,7 +65,7 @@
 
 <script>
 
-  var app = angular.module('myApp', ['ngMessages']);
+  var app = angular.module('myApp', ['ngMessages', 'ngMask']);
   app.controller('formController', ['$scope', function($scope) {
 
     $scope.submit = function() {

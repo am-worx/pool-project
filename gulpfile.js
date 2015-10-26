@@ -35,7 +35,7 @@ var routes = {
 };
 
 gulp.task("default", function () {
-  gulp.src('src/*.*')
+  gulp.src('src/**/*.*')
     .pipe(gulp.dest(routes.build.root));
 
   gulp.src("src/js/*.js")
