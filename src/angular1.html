@@ -33,8 +33,9 @@
         </div>
         <div class="form-group">
           <label for="userTel"><span class="required">* </span>Telephone</label>
-          <input name="tel" ng-model="user.tel" ng-model-options="debounceOption" type="tel"
-                 class="form-control" id="userTel" placeholder="Telephone" required>
+          <input type="tel" name="tel" ng-model="user.tel" ng-model-options="debounceOption"
+                 class="form-control" id="userTel"
+                 pattern="2-[0-9]{3}-[0-9]{3}" required>
           <span class="error-message"></span>
           <p class="help-block" ng-messages="userForm.tel.$error" ng-if="userForm.tel.$touched || submitAttempt">
             <span ng-messages-include="ngMessages.html"></span>
@@ -50,6 +51,7 @@
         </div>
         <input type="submit" value="Add user"/>
       </form>
+      <p><input type="tel" pattern="2-[0-9]{3}-[0-9]{3}"></p>
 
       <hr/>
       <pre>name = {{ user.name | json}}</pre>
